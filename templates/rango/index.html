@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+
+	<head>
+		<title>Rango</title>
+		<link rel="stylesheet" href="{% static "css/base.css" %}" />
+        <script src="{% static "js/jquery.js" %}"></script> 
+	</head>
+	
+	<body>
+		<h1>Rango Says...</h1>
+		HELLO WORLD! <strong>{{ boldmessage }}</strong><br />
+		
+		<strong>Top 5 Popular Categories: </strong>
+		{% if categories %}
+			<ul>
+				{% for category in categories %}
+				<li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong> There are no categories present. </strong>
+		{% endif %}
+		
+		<strong>Top 5 Popular Pages: </strong>
+		{% if pages %}
+            <ul>
+                {% for page in pages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No pages currently in category.</strong>
+        {% endif %}
+		
+		<a href="/rango/about/">About</a><br />
+		<img src="{% static "images/flowers.jpg" %}" alt="Picture of Flower" />
+		
+		<a href="/rango/add_category/">Add a New Category</a><br />
+	</body>
+	
+</html>
+	
